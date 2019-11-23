@@ -1,0 +1,202 @@
+﻿
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='~/css/site.css'>
+
+    <title>Food and Drug Recalls</title>
+</head>
+
+<body>
+    <header>
+
+        <div class='headerdiv'>
+            <h2>Food and Drug Recalls</h2>
+        </div>
+
+    </header>
+
+    <section>
+        <div class='divwon'>
+
+            <span class='dot'></span>
+            <span class='dot'></span>
+            <span class='dot'></span>
+
+        </div>
+
+        <div class='divtwo'>
+
+            <h5>Search Recalls Or Click on a Menu to learn more</h5>
+
+            <nav>
+                <a href="/home/index">Home</a>
+                <a href="/home/aboutus">About Us</a>
+                <a href="/home/foodrecall">Food</a>
+                <a href="/home/drugrecall">Drug</a>
+                <a href="/home/blogs">Blogs</a>
+                <div class="animation start-home"></div>
+            </nav>
+
+        </div>
+        <div class='divthree'>
+
+        </div>
+
+        <div class='divfour'>
+
+        </div>
+
+        <div class='divfive'>
+            <form class="form-style-9">
+                <h3>To Search Recalls Enter Your Desired Criteria To Know More </h3>
+                <ul>
+                    <li>
+                        <!-- <input type="text" name="field1" class="field-style field-split align-left" placeholder="Year From" /> -->
+                        <!-- <input type="email" name="field2" class="field-style field-split align-right" placeholder="Year To" />
+                        <input type="email" name="field2" class="field-style field-split align-right" placeholder="City" />
+                        <input type="email" name="field2" class="field-style field-split align-right" placeholder="Country" /> -->
+
+                        <select name='Country' class="field-style field-split align-right">
+                            <option value='select country'>Country</option>
+                            <option value='select country'>US</option>
+                            <option value='select country'>Canada</option>
+                            <option value='select country'>India</option>
+                            <option value='select country'>China</option>
+                        </select>
+                        <select name='City' class="field-style field-split align-right">
+                            <option value='select country'>City</option>
+                            <option value='select country'>Medford</option>
+                            <option value='select country'>Boston</option>
+                            <option value='select country'>Lakemary</option>
+                        </select>
+                        <select name='Year From' class="field-style field-split align-right">
+                            <option value='select country'>Year From</option>
+                            <option value='select country'>2012</option>
+                            <option value='select country'>2013</option>
+                            <option value='select country'>2014</option>
+                            <option value='select country'>2015</option>
+                        </select>
+                        <select name='Year From' class="field-style field-split align-right">
+                            <option value='select country'>Year To</option>
+                            <option value='select country'>2012</option>
+                            <option value='select country'>2013</option>
+                            <option value='select country'>2014</option>
+                            <option value='select country'>2015</option>
+                        </select>
+
+                    </li>
+                    <li>
+                        <input type="text" name="field3" class="field-style field-split align-left" placeholder="Manufacturer" />
+                        <input type="url" name="field4" class="field-style field-split align-right" placeholder="Product" />
+                    </li>
+                    <li>
+                        <!-- <input type="text" name="field3" class="field-style field-full align-none" placeholder="Subject" /> -->
+                    </li>
+                    <li>
+                        <input type="submit" value="Search Recalls" />
+                    </li>
+                </ul>
+            </form>
+
+        </div>
+
+        <div class='divsix'>
+
+            <h4>Output table below is obtained courtesy FDA API ouptut on <span>Food Recalls</span></h4>
+            <table class="gridtable">
+                <tr>
+                    <th>Product</th>
+                    <th>Recall Initiation Date</th>
+                    <th>Classification</th>
+                    <th>Reason For Recall</th>
+                    <th>Voluntary or Mandated Recall</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Distribution Coverage</th>
+                </tr>
+                <tr>
+                    <td>HARRY AND DAVID RASPBERRY PEANUT SPREAD</td>
+                    <td>Sep/27/2012</td>
+                    <td>Class 1 FATAL</td>
+                    <td>Salmonella Contamination</td>
+                    <td>Voluntary, Firm Initiated</td>
+                    <td>US</td>
+                    <td>Medford</td>
+                    <td>OR</td>
+                    <td>Nationwide, Canada</td>
+                </tr>
+                <tr>
+                    <td>SOFT TOFU</td>
+                    <td>Aug/31/2012</td>
+                    <td>Class 1 Fatal</td>
+                    <td>Listeria Monocytozenes Contamination</td>
+                    <td>Voluntary, Firm Initiated</td>
+                    <td>US</td>
+                    <td>Newark</td>
+                    <td>NJ</td>
+                    <td>Nationwide</td>
+                </tr>
+                <tr>
+                    <td>DICED ONIONS</td>
+                    <td>Jul/26/2012</td>
+                    <td>Class 1 Fatal</td>
+                    <td>Listeria Monocytozenes Contamination</td>
+                    <td>Mandated by FDA</td>
+                    <td>US</td>
+                    <td>Boston</td>
+                    <td>MA</td>
+                    <td>MA, ME, RI, NH, CT, NY, NJ</td>
+                </tr>
+            </table>
+
+
+        </div>
+
+        <div class='sticky-container'>
+            <ul class='sticky'>
+                <li>
+                    <img src='f.png' width='32' height='32'>
+                    <h6><a href='https://facebook.com/USFMuma' target='_blank'>Like us on Facebook</a></h6>
+                </li>
+                <li>
+                    <img src='t.png' width='32' height='32'>
+                    <h6><a href='https://twitter.com/usfmuma' target='_blank'>Follow us on Twitter</a></h6>
+                </li>
+                <li>
+                    <img src='y.png' width='32' height='32'>
+                    <h6><a href='https://youtube.com/USFCollegeofBusiness' target='_blank'>Subscribe on Youtube</a></h6>
+                </li>
+                <li>
+                    <img src='i.png' width='32' height='32'>
+                    <h6><a href='https://instagram.com/usfmuma' target='_blank'>Follow us on Instagram</a></h6>
+                </li>
+                <li>
+                    <img src='g.png' width='32' height='32'>
+                    <h6><a href='https://github.com/sks4world/Assignment3_Web_LookAndFeel' target='_blank'>Fork us on Github</a></h6>
+                </li>
+
+            </ul>
+        </div>
+
+
+
+    </section>
+
+    <footer>
+        <div class='divfooter'>
+
+            <p>
+                Information on <span>Food Recalls and Drug Recalls</span> Be Informed
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+
+</html>
