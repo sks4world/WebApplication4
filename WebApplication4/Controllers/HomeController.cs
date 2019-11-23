@@ -13,7 +13,7 @@ namespace WebApplication4.Controllers
 {
     public class HomeController : Controller
     {
-        string BASE_URL = "https://api.fda.gov/food/enforcement.json";
+        string BASE_URL = "https://api.fda.gov/drug/enforcement.json";
         HttpClient httpClient;
 
         public HomeController()
@@ -24,15 +24,39 @@ namespace WebApplication4.Controllers
             System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public List<Recall> GetRecalls()
+        public List<Recall> GetRecalls(string country, string state, string catclass, string typeofrecall)
         {
-            string Foodrecall_API = BASE_URL + "?search=report_date:[20040101+TO+20131231]&limit=10";
+            if (country == null)
+            {
+                country = "united";
+            }
+            if (state==null)
+            {
+                state = "ca";
+            }
+            if (catclass == null)
+            {
+                catclass = "i";
+            }
+            if (typeofrecall == "food")
+            {
+                BASE_URL = "https://api.fda.gov/food/enforcement.json";
+            }
+
+            
+            //string Foodrecall_API = BASE_URL + "?search=report_date:[20040101+TO+20131231]&limit=10";
             //string Foodrecall_API = BASE_URL + "ref-data/symbols";
             string recalllist = "";
             List<Recall> samples = null;
 
-            httpClient.BaseAddress = new Uri(Foodrecall_API);
-            HttpResponseMessage response = httpClient.GetAsync(Foodrecall_API).GetAwaiter().GetResult();
+            //httpClient.BaseAddress = new Uri(Foodrecall_API);
+            //HttpResponseMessage response = httpClient.GetAsync(Foodrecall_API).GetAwaiter().GetResult();
+
+            string querystring = "?search=country:"+country+"&limit=10";
+            string Foodrecall_API1 = BASE_URL + querystring;
+
+            httpClient.BaseAddress = new Uri(Foodrecall_API1);
+            HttpResponseMessage response = httpClient.GetAsync(Foodrecall_API1).GetAwaiter().GetResult();
 
             if (response.IsSuccessStatusCode)
             {
@@ -47,17 +71,18 @@ namespace WebApplication4.Controllers
                 JArray resultsArray = (JArray)recallJson["results"];
                 string resultsString = resultsArray.ToString();
                 samples = JsonConvert.DeserializeObject<List<Recall>>(resultsString);
-                samples = samples.GetRange(0, 10);
+                //samples = samples.GetRange(0, 10);
 
             }
+
             return samples;
 
         }
 
+        
 
 
-
-        public IActionResult Index()
+            public IActionResult Index()
         {
             
             return View();
@@ -77,17 +102,32 @@ namespace WebApplication4.Controllers
             return View();
         }
 
-        public IActionResult drugrecall()
+        public IActionResult drugrecall(string country, string state, string catclass, string typeofrecall)
         {
+            typeofrecall = "drug";
+            List<Recall> output = GetRecalls(country, state, catclass, typeofrecall);
 
-            List<Recall> output = GetRecalls();
-
+            if (output== null)
+            {
+                RedirectToAction("drugrecall");
+            }
+            
             return View(output);
         }
                 
-        public IActionResult foodrecall()
+        public IActionResult foodrecall(string country, string state, string catclass, string typeofrecall)
         {
-            return View();
+            typeofrecall = "food";
+            List<Recall> output = GetRecalls(country, state, catclass, typeofrecall);
+
+            if (output== null)
+            {
+                RedirectToAction("foodrecall");
+
+            } 
+            return View(output);
+
+
         }
 
         public IActionResult displayresults()

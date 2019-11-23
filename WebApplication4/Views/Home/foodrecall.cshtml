@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<WebApplication4.Models.Recall>
+
 <html>
 
 <head>
@@ -49,110 +50,67 @@
         </div>
 
         <div class='divfive'>
-            <form class="form-style-9">
+            <form class="form-style-9" asp-action="foodrecall" method="post">
                 <h3>To Search Recalls Enter Your Desired Criteria To Know More </h3>
                 <ul>
                     <li>
-                        <!-- <input type="text" name="field1" class="field-style field-split align-left" placeholder="Year From" /> -->
-                        <!-- <input type="email" name="field2" class="field-style field-split align-right" placeholder="Year To" />
-                        <input type="email" name="field2" class="field-style field-split align-right" placeholder="City" />
-                        <input type="email" name="field2" class="field-style field-split align-right" placeholder="Country" /> -->
 
-                        <select name='Country' class="field-style field-split align-right">
-                            <option value='select country'>Country</option>
-                            <option value='select country'>US</option>
-                            <option value='select country'>Canada</option>
-                            <option value='select country'>India</option>
-                            <option value='select country'>China</option>
-                        </select>
-                        <select name='City' class="field-style field-split align-right">
-                            <option value='select country'>City</option>
-                            <option value='select country'>Medford</option>
-                            <option value='select country'>Boston</option>
-                            <option value='select country'>Lakemary</option>
-                        </select>
-                        <select name='Year From' class="field-style field-split align-right">
-                            <option value='select country'>Year From</option>
-                            <option value='select country'>2012</option>
-                            <option value='select country'>2013</option>
-                            <option value='select country'>2014</option>
-                            <option value='select country'>2015</option>
-                        </select>
-                        <select name='Year From' class="field-style field-split align-right">
-                            <option value='select country'>Year To</option>
-                            <option value='select country'>2012</option>
-                            <option value='select country'>2013</option>
-                            <option value='select country'>2014</option>
-                            <option value='select country'>2015</option>
-                        </select>
+                        <input name="country" class="field-style field-split align-right" placeholder="united states, china, india" />
+                        @*<input name="state" class="field-style field-split align-right" placeholder="ca, fl, nj, ny, tx, il, nc" />
+                <input name="catclass" class="field-style field-split align-right" placeholder="class I, class II, class iii" />*@
 
                     </li>
                     <li>
-                        <input type="text" name="field3" class="field-style field-split align-left" placeholder="Manufacturer" />
-                        <input type="url" name="field4" class="field-style field-split align-right" placeholder="Product" />
-                    </li>
-                    <li>
-                        <!-- <input type="text" name="field3" class="field-style field-full align-none" placeholder="Subject" /> -->
-                    </li>
-                    <li>
-                        <input type="submit" value="Search Recalls" />
+                        <input type="submit" value="Search Recalls" asp-controller="Home" asp-action="drugrecall" />
                     </li>
                 </ul>
             </form>
-
         </div>
 
         <div class='divsix'>
 
             <h4>Output table below is obtained courtesy FDA API ouptut on <span>Food Recalls</span></h4>
             <table class="gridtable">
-                <tr>
-                    <th>Product</th>
-                    <th>Recall Initiation Date</th>
-                    <th>Classification</th>
-                    <th>Reason For Recall</th>
-                    <th>Voluntary or Mandated Recall</th>
-                    <th>Country</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Distribution Coverage</th>
-                </tr>
-                <tr>
-                    <td>HARRY AND DAVID RASPBERRY PEANUT SPREAD</td>
-                    <td>Sep/27/2012</td>
-                    <td>Class 1 FATAL</td>
-                    <td>Salmonella Contamination</td>
-                    <td>Voluntary, Firm Initiated</td>
-                    <td>US</td>
-                    <td>Medford</td>
-                    <td>OR</td>
-                    <td>Nationwide, Canada</td>
-                </tr>
-                <tr>
-                    <td>SOFT TOFU</td>
-                    <td>Aug/31/2012</td>
-                    <td>Class 1 Fatal</td>
-                    <td>Listeria Monocytozenes Contamination</td>
-                    <td>Voluntary, Firm Initiated</td>
-                    <td>US</td>
-                    <td>Newark</td>
-                    <td>NJ</td>
-                    <td>Nationwide</td>
-                </tr>
-                <tr>
-                    <td>DICED ONIONS</td>
-                    <td>Jul/26/2012</td>
-                    <td>Class 1 Fatal</td>
-                    <td>Listeria Monocytozenes Contamination</td>
-                    <td>Mandated by FDA</td>
-                    <td>US</td>
-                    <td>Boston</td>
-                    <td>MA</td>
-                    <td>MA, ME, RI, NH, CT, NY, NJ</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Product Description</th>
+
+
+                        <th>Country</th>
+
+
+                        <th>City</th>
+
+
+                        <th>Product Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.product_description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.country)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.city)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.product_quantity)
+                            </td>
+                        </tr>
+                    }
+                    } else
+                    {
+                <h5>"This country does not have any records. Please try another country"</h5>
+                    }
+                </tbody>
             </table>
-
-
         </div>
 
         <div class='sticky-container'>
