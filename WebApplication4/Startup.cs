@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApplication4.Controllers;
 using WebApplication4.Models;
 
 namespace WebApplication4
@@ -27,6 +28,11 @@ namespace WebApplication4
         {
             services.AddDbContext<AppDbContext>(options
                 =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IRepository, Repository>();
+
+            services.AddMvc();
+
             //services.Configure<CookiePolicyOptions>(options =>
             //{
             //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.

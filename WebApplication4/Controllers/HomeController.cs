@@ -13,11 +13,14 @@ namespace WebApplication4.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IRepository _repository;
+
         string BASE_URL = "https://api.fda.gov/drug/enforcement.json";
         HttpClient httpClient;
 
-        public HomeController()
+        public HomeController(IRepository repository)
         {
+            _repository = repository;
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new
@@ -105,27 +108,27 @@ namespace WebApplication4.Controllers
         public IActionResult drugrecall(string country, string state, string catclass, string typeofrecall)
         {
             typeofrecall = "drug";
-            List<Recall> output = GetRecalls(country, state, catclass, typeofrecall);
-
-            if (output== null)
+            List<Recall> drugRecallData = GetRecalls(country, state, catclass, typeofrecall);
+            _repository.SaveRecallData(drugRecallData);
+            if (drugRecallData == null)
             {
                 RedirectToAction("drugrecall");
             }
             
-            return View(output);
+            return View(drugRecallData);
         }
                 
         public IActionResult foodrecall(string country, string state, string catclass, string typeofrecall)
         {
             typeofrecall = "food";
-            List<Recall> output = GetRecalls(country, state, catclass, typeofrecall);
-
-            if (output== null)
+            List<Recall> foodRecallData = GetRecalls(country, state, catclass, typeofrecall);
+            _repository.SaveRecallData(foodRecallData);
+            if (foodRecallData == null)
             {
                 RedirectToAction("foodrecall");
 
             } 
-            return View(output);
+            return View(foodRecallData);
 
 
         }
