@@ -4,10 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication4.Models;
+using static WebApplication4.Models.Recall;
 using Newtonsoft.Json;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using WebApplication4.Models.DataAccess;
+
 
 namespace WebApplication4.Controllers
 {
@@ -16,8 +18,10 @@ namespace WebApplication4.Controllers
         string BASE_URL = "https://api.fda.gov/drug/enforcement.json";
         HttpClient httpClient;
 
-        public HomeController()
+        public HomeController(AppDbContext context)
         {
+            dbContext = context;
+
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new

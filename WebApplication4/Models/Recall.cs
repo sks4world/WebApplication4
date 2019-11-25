@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication4.Models
 {
@@ -19,5 +20,7 @@ namespace WebApplication4.Models
         public string state { get; set; }
         public string product_description { get; set; }
         public string report_date { get; set; }
+        [Key]
+        public string search_id { get; set; }
     }
 }
