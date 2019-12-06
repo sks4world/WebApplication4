@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using WebApplication4.Models.DataAccess;
+using WebApplication4.Models;
 
 
 namespace WebApplication4.Controllers
@@ -17,6 +18,7 @@ namespace WebApplication4.Controllers
     {
         string BASE_URL = "https://api.fda.gov/drug/enforcement.json";
         HttpClient httpClient;
+        public AppDbContext dbContext;
 
         public HomeController(AppDbContext context)
         {
@@ -118,7 +120,8 @@ namespace WebApplication4.Controllers
             
             return View(output);
         }
-                
+
+        
         public IActionResult foodrecall(string country, string state, string catclass, string typeofrecall)
         {
             typeofrecall = "food";
@@ -128,7 +131,9 @@ namespace WebApplication4.Controllers
             {
                 RedirectToAction("foodrecall");
 
-            } 
+            }
+
+
             return View(output);
 
 

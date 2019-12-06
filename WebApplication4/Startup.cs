@@ -35,7 +35,9 @@ namespace WebApplication4
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration["Data:WebApplication420191124102742_db:ConnectionString"]));
+            //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration["Data:WebApplication420191124102742_db:ConnectionString"]));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration["Data:WebApplication420191204095323_db:ConnectionString"]));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
